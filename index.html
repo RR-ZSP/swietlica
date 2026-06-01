@@ -440,6 +440,7 @@
     .robot-cell.start { background: #dcfce7; border-color: #22c55e; }
     .robot-cell.goal { background: #fee2e2; border-color: #ef4444; }
     .robot-cell.trap { background: #f8fafc; border-color: #94a3b8; }
+    .robot-cell.key-cell { background: #fef9c3; border-color: #eab308; }
     .robot-cell.robot-here { outline: 7px solid #facc15; transform: scale(1.04); }
     .robot-cell .label {
       position: absolute;
@@ -530,6 +531,35 @@
       .robot-game { grid-template-columns: 1fr; }
       .robot-grid { max-width: 520px; }
     }
+
+
+    /* Poprawka czytelności od slajdu 20 wzwyż */
+    .slide:nth-of-type(n+20) { padding: 32px 44px; }
+    .slide:nth-of-type(n+20) h2 { font-size: clamp(2.05rem, 3.5vw, 3.45rem); margin-bottom: 16px; }
+    .slide:nth-of-type(n+20) h3 { font-size: clamp(1.15rem, 2vw, 1.75rem); margin-bottom: 10px; }
+    .slide:nth-of-type(n+20) p,
+    .slide:nth-of-type(n+20) li { font-size: clamp(1.05rem, 1.55vw, 1.55rem); line-height: 1.22; margin-bottom: 8px; }
+    .slide:nth-of-type(n+20) .lead { font-size: clamp(1.25rem, 2vw, 1.9rem); }
+    .slide:nth-of-type(n+20) .card { min-height: 105px; padding: 18px; border-radius: 22px; }
+    .slide:nth-of-type(n+20) .icon { font-size: clamp(2.4rem, 3.6vw, 3.8rem); margin-bottom: 6px; }
+    .slide:nth-of-type(n+20) .grid { gap: 16px; }
+    .slide:nth-of-type(n+20) .hero-card,
+    .slide:nth-of-type(n+20) .quiz-panel { padding: 22px; border-radius: 28px; }
+    .slide:nth-of-type(n+20) .footer-tip,
+    .slide:nth-of-type(n+20) .mini-note { padding: 12px 16px; margin-top: 12px; }
+    .slide:nth-of-type(20) .robot-game { grid-template-columns: .95fr 1.05fr; gap: 16px; margin-top: 10px; }
+    .slide:nth-of-type(20) .robot-map { padding: 12px; border-radius: 26px; }
+    .slide:nth-of-type(20) .robot-grid { gap: 8px; max-width: 430px; }
+    .slide:nth-of-type(20) .robot-cell { border-radius: 18px; font-size: clamp(1.7rem, 3vw, 2.7rem); border-width: 2px; }
+    .slide:nth-of-type(20) .robot-cell .label { font-size: .62rem; left: 6px; top: 5px; }
+    .slide:nth-of-type(20) .command-panel { padding: 16px; border-radius: 26px; gap: 10px; }
+    .slide:nth-of-type(20) .cmd-btn,
+    .slide:nth-of-type(20) .game-btn { padding: 11px 12px; font-size: 1.05rem; border-radius: 18px; }
+    .slide:nth-of-type(20) .program-strip { min-height: 66px; padding: 8px; border-radius: 18px; }
+    .slide:nth-of-type(20) .program-token { width: 38px; height: 38px; font-size: 1.35rem; }
+    .slide:nth-of-type(20) .robot-message { min-height: 44px; font-size: .95rem; padding: 9px 12px; }
+    .slide:nth-of-type(20) .mission-card { margin-top: 10px; padding: 12px; border-radius: 20px; grid-template-columns: 56px 1fr; }
+    .slide:nth-of-type(20) .mission-card .big { font-size: 2.6rem; }
 
   </style>
 </head>
@@ -923,6 +953,63 @@
         </div>
         <div class="footer-tip center">To jest prawdziwe myślenie algorytmiczne: planujesz kroki, testujesz i poprawiasz.</div>
       </div><div class="slide-no"></div>
+
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2>Misja 2: robot szuka skarbu</h2>
+        <p class="lead center">To drugie zadanie po labiryncie. Tym razem robot musi zebrać klucz i dojść do skarbu.</p>
+        <div class="robot-game">
+          <div>
+            <div class="robot-map">
+              <div class="robot-grid" id="robotGrid2">
+                <div class="robot-cell start" data-pos2="0"><span class="label">START</span>🟢</div>
+                <div class="robot-cell" data-pos2="1">⬜</div>
+                <div class="robot-cell trap" data-pos2="2"><span class="label">kamień</span>🪨</div>
+                <div class="robot-cell" data-pos2="3">⬜</div>
+                <div class="robot-cell" data-pos2="4">⬜</div>
+                <div class="robot-cell key-cell" data-pos2="5"><span class="label">KLUCZ</span>🔑</div>
+                <div class="robot-cell" data-pos2="6">⬜</div>
+                <div class="robot-cell" data-pos2="7">⬜</div>
+                <div class="robot-cell" data-pos2="8">⬜</div>
+                <div class="robot-cell trap" data-pos2="9"><span class="label">dziura</span>🕳️</div>
+                <div class="robot-cell" data-pos2="10">⬜</div>
+                <div class="robot-cell" data-pos2="11">⬜</div>
+                <div class="robot-cell" data-pos2="12">⬜</div>
+                <div class="robot-cell" data-pos2="13">⬜</div>
+                <div class="robot-cell" data-pos2="14">⬜</div>
+                <div class="robot-cell goal" data-pos2="15"><span class="label">SKARB</span>🎁</div>
+              </div>
+            </div>
+            <div class="mission-card">
+              <div class="big">🧭</div>
+              <p><span class="highlight">Misja:</span> robot musi najpierw wejść na pole z kluczem 🔑, a dopiero potem dojść do skarbu 🎁. Omijaj kamień i dziurę.</p>
+            </div>
+          </div>
+          <div class="command-panel">
+            <div>
+              <h3>Karty ruchu</h3>
+              <div class="command-buttons">
+                <button class="cmd-btn" onclick="addRobotCommand2('up')">⬆️ góra</button>
+                <button class="cmd-btn" onclick="addRobotCommand2('right')">➡️ prawo</button>
+                <button class="cmd-btn" onclick="addRobotCommand2('down')">⬇️ dół</button>
+                <button class="cmd-btn" onclick="addRobotCommand2('left')">⬅️ lewo</button>
+              </div>
+            </div>
+            <div>
+              <h3>Twój algorytm</h3>
+              <div class="program-strip" id="programStrip2"></div>
+            </div>
+            <div class="grid grid-2">
+              <button class="game-btn run" onclick="runRobotProgram2()">▶ START</button>
+              <button class="game-btn reset" onclick="resetRobotGame2()">↺ WYCZYŚĆ</button>
+            </div>
+            <div class="robot-message" id="robotMessage2">Podpowiedź: najpierw zaplanuj drogę do klucza, potem od klucza do skarbu.</div>
+          </div>
+        </div>
+        <div class="footer-tip center">To trudniejsze zadanie: algorytm ma dwa cele — klucz i skarb.</div>
+      </div><div class="slide-no"></div>
     </section>
 
     <section class="slide">
@@ -1019,6 +1106,85 @@
           </ol>
         </div>
       </div><div class="slide-no">21</div>
+    </section>
+
+
+    <section class="slide">
+      <div class="content">
+        <h2>ChatGPT w życiu codziennym</h2>
+        <p class="lead center">ChatGPT to program komputerowy, który potrafi rozmawiać i pomagać w zadaniach.</p>
+        <div class="grid grid-4" style="margin-top:24px">
+          <div class="card center"><div class="icon">💬</div><p>Odpowiada na pytania.</p></div>
+          <div class="card center"><div class="icon">💡</div><p>Pomaga wymyślać pomysły.</p></div>
+          <div class="card center"><div class="icon">📖</div><p>Tłumaczy trudne słowa.</p></div>
+          <div class="card center"><div class="icon">🧩</div><p>Tworzy quizy i zagadki.</p></div>
+        </div>
+        <div class="footer-tip center">Analogia: to jak bardzo szybki pomocnik z wielką biblioteką, ale nie człowiek.</div>
+      </div><div class="slide-no"></div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2>Jak ChatGPT pomaga w nauce?</h2>
+        <div class="grid grid-3">
+          <div class="card center"><div class="icon">🧮</div><h3>Matematyka</h3><p>Może wyjaśnić sposób liczenia krok po kroku.</p></div>
+          <div class="card center"><div class="icon">✍️</div><h3>Polski</h3><p>Może pomóc ułożyć plan opowiadania.</p></div>
+          <div class="card center"><div class="icon">🌿</div><h3>Przyroda</h3><p>Może wyjaśnić, jak działa deszcz, wiatr albo roślina.</p></div>
+          <div class="card center"><div class="icon">🇬🇧</div><h3>Języki</h3><p>Może podać przykłady słów i zdań.</p></div>
+          <div class="card center"><div class="icon">🎨</div><h3>Kreatywność</h3><p>Może wymyślać tematy prac, zabaw i projektów.</p></div>
+          <div class="card center"><div class="icon">❓</div><h3>Pytania</h3><p>Może pomagać, kiedy czegoś nie rozumiemy.</p></div>
+        </div>
+      </div><div class="slide-no"></div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2>Czy ChatGPT zawsze ma rację?</h2>
+        <div class="grid grid-2">
+          <div class="hero-card">
+            <p class="lead"><span class="highlight">Nie zawsze.</span> ChatGPT może się pomylić, źle zrozumieć pytanie albo podać niepełną odpowiedź.</p>
+            <p>Dlatego odpowiedzi trzeba sprawdzać.</p>
+          </div>
+          <div class="card center"><div class="icon">🕵️</div><p>Bądź detektywem: sprawdź w książce, zapytaj nauczyciela albo porównaj z innym źródłem.</p></div>
+        </div>
+        <div class="footer-tip center">AI pomaga myśleć, ale nie myśli za nas.</div>
+      </div><div class="slide-no"></div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2>Bezpieczne korzystanie z AI</h2>
+        <div class="grid grid-2">
+          <div class="card"><div class="icon">🛑</div><h3>Nie podawaj</h3><p>Adresu domu, numeru telefonu, haseł, nazwy szkoły bez zgody dorosłych.</p></div>
+          <div class="card"><div class="icon">✅</div><h3>Zawsze pamiętaj</h3><p>Pytaj dorosłych, sprawdzaj odpowiedzi i używaj AI do nauki, a nie do oszukiwania.</p></div>
+        </div>
+        <div class="footer-tip center">Najważniejsza zasada: nie wszystko, co napisze komputer, musi być prawdą.</div>
+      </div><div class="slide-no"></div>
+    </section>
+
+    <section class="slide quiz">
+      <div class="content">
+        <h2>Misja detektywa AI</h2>
+        <div class="quiz-panel">
+          <div class="quiz-question">
+            <div class="quiz-mark">🤖</div>
+            <div>
+              <p class="lead">ChatGPT napisał: „W roku jest 400 dni”. Co robisz?</p>
+              <p class="small">A. Wierzysz od razu. B. Sprawdzasz odpowiedź. C. Przepisujesz bez zastanowienia.</p>
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Pokaż odpowiedź</button>
+              <div class="answer">Najlepsza odpowiedź: B. Sprawdzamy odpowiedź, bo AI może się pomylić.</div>
+            </div>
+          </div>
+          <div class="quiz-question">
+            <div class="quiz-mark">🔐</div>
+            <div>
+              <p class="lead">Czy można wpisać do AI swoje hasło albo adres domu?</p>
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Pokaż odpowiedź</button>
+              <div class="answer">Nie. Prywatnych informacji nie wpisujemy do internetu ani do narzędzi AI bez zgody dorosłych.</div>
+            </div>
+          </div>
+        </div>
+      </div><div class="slide-no"></div>
     </section>
 
     <section class="slide dark">
@@ -1179,6 +1345,92 @@
     window.runRobotProgram = runRobotProgram;
     window.resetRobotGame = resetRobotGame;
     setTimeout(updateRobotBoard, 100);
+
+    const robotState2 = { commands: [], pos: 0, running: false, hasKey: false };
+    const traps2 = new Set([2, 9]);
+    const keyPos2 = 5;
+    const goal2 = 15;
+
+    function updateRobotBoard2() {
+      document.querySelectorAll('.robot-cell[data-pos2]').forEach(cell => cell.classList.remove('robot-here'));
+      const currentCell = document.querySelector(`.robot-cell[data-pos2="${robotState2.pos}"]`);
+      if (currentCell) currentCell.classList.add('robot-here');
+    }
+
+    function updateProgramStrip2() {
+      const strip = document.getElementById('programStrip2');
+      if (!strip) return;
+      strip.innerHTML = '';
+      robotState2.commands.forEach(cmd => {
+        const token = document.createElement('span');
+        token.className = 'program-token';
+        token.textContent = arrowByCommand[cmd];
+        strip.appendChild(token);
+      });
+    }
+
+    function setRobotMessage2(text) {
+      const msg = document.getElementById('robotMessage2');
+      if (msg) msg.textContent = text;
+    }
+
+    function addRobotCommand2(cmd) {
+      if (robotState2.running || robotState2.commands.length >= 14) return;
+      robotState2.commands.push(cmd);
+      updateProgramStrip2();
+      setRobotMessage2('Dodano kartę. Pamiętaj: najpierw klucz, potem skarb.');
+    }
+
+    async function runRobotProgram2() {
+      if (robotState2.running) return;
+      robotState2.running = true;
+      robotState2.pos = 0;
+      robotState2.hasKey = false;
+      updateRobotBoard2();
+      setRobotMessage2('Robot rusza po klucz i skarb...');
+      for (const cmd of robotState2.commands) {
+        await new Promise(r => setTimeout(r, 520));
+        const before = robotState2.pos;
+        robotState2.pos = nextRobotPosition(robotState2.pos, cmd);
+        updateRobotBoard2();
+        if (robotState2.pos === before) {
+          setRobotMessage2('Robot uderzył w ścianę planszy. Popraw algorytm.');
+          robotState2.running = false;
+          return;
+        }
+        if (traps2.has(robotState2.pos)) {
+          setRobotMessage2('Ups! Robot trafił na przeszkodę. Spróbuj inną drogą.');
+          robotState2.running = false;
+          return;
+        }
+        if (robotState2.pos === keyPos2 && !robotState2.hasKey) {
+          robotState2.hasKey = true;
+          setRobotMessage2('Super! Robot ma klucz. Teraz prowadź go do skarbu.');
+        }
+        if (robotState2.pos === goal2) {
+          setRobotMessage2(robotState2.hasKey ? 'Brawo! Robot zdobył klucz i dotarł do skarbu. 🎉' : 'Robot znalazł skarb, ale bez klucza! Najpierw trzeba zebrać klucz.');
+          robotState2.running = false;
+          return;
+        }
+      }
+      setRobotMessage2('Robot się zatrzymał. Czy ma klucz i jest przy skarbie? Jeśli nie, dodaj kroki.');
+      robotState2.running = false;
+    }
+
+    function resetRobotGame2() {
+      robotState2.commands = [];
+      robotState2.pos = 0;
+      robotState2.running = false;
+      robotState2.hasKey = false;
+      updateProgramStrip2();
+      updateRobotBoard2();
+      setRobotMessage2('Wyczyszczono. Ułóż nowy algorytm: klucz, potem skarb.');
+    }
+
+    window.addRobotCommand2 = addRobotCommand2;
+    window.runRobotProgram2 = runRobotProgram2;
+    window.resetRobotGame2 = resetRobotGame2;
+    setTimeout(updateRobotBoard2, 100);
 
     prevBtn.addEventListener('click', () => goToSlide(current - 1));
     nextBtn.addEventListener('click', () => goToSlide(current + 1));
