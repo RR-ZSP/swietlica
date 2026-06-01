@@ -327,6 +327,67 @@
     .binary-tile .top { font-size: 2.5rem; font-weight: 1000; }
     .binary-tile .switch { font-size: 3rem; margin: 6px 0; }
     .binary-tile.off { opacity: .62; filter: grayscale(.5); }
+    .binary-reveal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+    .binary-card {
+      min-height: 205px;
+      border: 0;
+      border-radius: 28px;
+      cursor: pointer;
+      padding: 18px 12px;
+      background: linear-gradient(135deg, #dbeafe, #ffffff);
+      box-shadow: 0 16px 34px rgba(20,70,140,.16);
+      border: 3px solid #bfdbfe;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      font-family: inherit;
+      color: #102044;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .binary-card:hover { transform: translateY(-5px); box-shadow: 0 22px 42px rgba(20,70,140,.22); }
+    .binary-card .front {
+      display: flex;
+      min-height: 160px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .binary-card .front .q { font-size: 3.2rem; font-weight: 1000; color: #176bff; }
+    .binary-card .front .tap { font-size: 1rem; font-weight: 900; color: #46618f; }
+    .binary-card .back { display: none; }
+    .binary-card.revealed { background: linear-gradient(135deg, #fff7ed, #ffffff); border-color: #fdba74; }
+    .binary-card.revealed .front { display: none; }
+    .binary-card.revealed .back { display: block; }
+    .binary-card .value-big { font-size: clamp(3.2rem, 5vw, 5rem); font-weight: 1000; line-height: 1; }
+    .binary-card .lamp-big { font-size: 3.5rem; margin: 8px 0; }
+    .binary-card .use-line { font-size: 1.05rem; font-weight: 900; }
+    .binary-card .bit-line { margin-top: 8px; font-size: 1.6rem; font-weight: 1000; }
+    .binary-sum-box {
+      display: grid;
+      grid-template-columns: 1.1fr 1.4fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+    .binary-sum-card {
+      border-radius: 28px;
+      padding: 20px;
+      background: #f8fafc;
+      border: 3px solid #dbeafe;
+      box-shadow: 0 14px 30px rgba(20,70,140,.10);
+    }
+    .binary-equation { font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 1000; text-align:center; margin-top: 12px; }
+    @media (max-width: 900px) {
+      .binary-reveal-grid { grid-template-columns: repeat(2, 1fr); }
+      .binary-sum-box { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 900px) {
       .nav-controls { right: 12px; bottom: 12px; gap: 8px; }
       .nav-btn { width: 46px; height: 46px; font-size: 1.6rem; }
@@ -419,13 +480,13 @@
           <div class="quiz-question">
             <div class="quiz-mark">?</div>
             <div>
-              <p class="lead">Które z tych urządzeń zachowuje się jak komputer: pralka z programami, zwykła łyżka czy zeszyt?</p>
-              <p class="small">Uzasadnij: czy urządzenie przyjmuje informacje, wykonuje instrukcje i pokazuje wynik?</p>
-              <button class="reveal-btn" onclick="toggleAnswer(this)">Pokaż podpowiedź</button>
-              <div class="answer">Najlepsza odpowiedź: pralka z programami. Przyjmuje wybór programu, wykonuje kolejne kroki i kończy pranie.</div>
+              <p class="lead">Wyobraź sobie robota odkurzającego. Jakie informacje musi zebrać, jakie instrukcje wykonać i jaki wynik powinien pokazać, żeby naprawdę działał jak komputer?</p>
+              <p class="small">Pomyśl jak detektyw: wejście → przetwarzanie → pamięć → wyjście.</p>
+              <button class="reveal-btn" onclick="toggleAnswer(this)">Pokaż przykład odpowiedzi</button>
+              <div class="answer">Przykład: robot zbiera informacje z czujników, sprawdza gdzie są przeszkody, pamięta trasę, wykonuje program sprzątania i pokazuje wynik, np. „sprzątanie zakończone”.</div>
             </div>
           </div>
-          <div class="mini-note">Myślimy nie tylko „czy ma ekran?”, ale „czy wykonuje program?”.</div>
+          <div class="mini-note">Najważniejsze pytanie: czy urządzenie zbiera informacje i wykonuje instrukcje krok po kroku?</div>
         </div>
       </div><div class="slide-no"></div>
     </section>
@@ -553,18 +614,41 @@
           <div class="calc-strip"><span class="bubble">4</span><span class="lead">+</span><span class="bubble">1</span><span class="lead">=</span><span class="bubble highlight">5</span><span class="lead">czyli</span><span class="bubble highlight">0101</span></div>
         </div>
         <div class="binary-board">
-          <p class="lead center">Każde miejsce ma wartość: <span class="purple">8</span>, <span class="blue">4</span>, <span class="green">2</span>, <span class="orange">1</span></p>
-          <p class="center">Jeśli używamy miejsca — piszemy <span class="highlight">1</span>. Jeśli nie używamy — piszemy <span class="blue">0</span>.</p>
-          <div class="place-values">
-            <div class="place"><div class="value purple">8</div><div class="lamp">💡</div><p>Za dużo dla 5<br>nie bierzemy</p><div class="bit blue">0</div></div>
-            <div class="place on"><div class="value blue">4</div><div class="lamp">💡</div><p>Bierzemy 4!</p><div class="bit highlight">1</div></div>
-            <div class="place"><div class="value green">2</div><div class="lamp">💡</div><p>Za dużo po 4<br>nie bierzemy</p><div class="bit blue">0</div></div>
-            <div class="place on"><div class="value orange">1</div><div class="lamp">💡</div><p>Bierzemy 1!</p><div class="bit highlight">1</div></div>
+          <p class="lead center">Każde miejsce ma swoją wartość. Kliknij karty od lewej do prawej i odkrywaj liczbę <span class="highlight">5</span>.</p>
+          <p class="center">Zasada: jeśli bierzemy wartość — zapisujemy <span class="highlight">1</span>. Jeśli nie bierzemy — zapisujemy <span class="blue">0</span>.</p>
+
+          <div class="binary-reveal-grid">
+            <button class="binary-card" onclick="revealBinaryCard(this)">
+              <div class="front"><div class="q">?</div><div class="tap">Kliknij kartę 1</div></div>
+              <div class="back"><div class="value-big purple">8</div><div class="lamp-big">⚪</div><p class="use-line">8 jest za duże dla 5</p><p class="bit-line blue">piszemy 0</p></div>
+            </button>
+            <button class="binary-card" onclick="revealBinaryCard(this)">
+              <div class="front"><div class="q">?</div><div class="tap">Kliknij kartę 2</div></div>
+              <div class="back"><div class="value-big blue">4</div><div class="lamp-big">💡</div><p class="use-line">4 pasuje — bierzemy!</p><p class="bit-line highlight">piszemy 1</p></div>
+            </button>
+            <button class="binary-card" onclick="revealBinaryCard(this)">
+              <div class="front"><div class="q">?</div><div class="tap">Kliknij kartę 3</div></div>
+              <div class="back"><div class="value-big green">2</div><div class="lamp-big">⚪</div><p class="use-line">Po 4 brakuje 1, więc 2 jest za duże</p><p class="bit-line blue">piszemy 0</p></div>
+            </button>
+            <button class="binary-card" onclick="revealBinaryCard(this)">
+              <div class="front"><div class="q">?</div><div class="tap">Kliknij kartę 4</div></div>
+              <div class="back"><div class="value-big orange">1</div><div class="lamp-big">💡</div><p class="use-line">Bierzemy 1, bo 4 + 1 = 5</p><p class="bit-line highlight">piszemy 1</p></div>
+            </button>
           </div>
-          <div class="calc-strip">
-            <span class="bubble blue">4</span><span class="lead">+</span><span class="bubble orange">1</span><span class="lead">=</span><span class="bubble green">5</span><span class="lead">czyli</span><span class="bubble highlight">0101</span>
+
+          <div class="binary-sum-box">
+            <div class="binary-sum-card center">
+              <h3>Liczymy użyte lampki</h3>
+              <div class="binary-equation"><span class="blue">4</span> + <span class="orange">1</span> = <span class="green">5</span></div>
+            </div>
+            <div class="binary-sum-card center">
+              <h3>Czytamy wynik od lewej</h3>
+              <div class="binary-equation"><span class="blue">0</span><span class="highlight">1</span><span class="blue">0</span><span class="highlight">1</span></div>
+              <p class="lead" style="margin-top:8px">Liczba 5 to <span class="highlight">0101</span> w zapisie binarnym.</p>
+            </div>
           </div>
-          <p class="center" style="margin-top:18px"><span class="highlight">Czytamy od lewej:</span> 0 1 0 1. To jest liczba 5 w systemie binarnym!</p>
+
+          <div class="mini-note">Zadanie dla klasy: kliknijcie karty jeszcze raz i spróbujcie tak samo ułożyć liczbę 6.</div>
         </div>
       </div><div class="slide-no">12</div>
     </section>
@@ -808,6 +892,13 @@
       answer.classList.toggle('show');
       button.textContent = answer.classList.contains('show') ? 'Ukryj odpowiedź' : 'Pokaż podpowiedź';
     }
+
+
+    function revealBinaryCard(card) {
+      card.classList.toggle('revealed');
+    }
+
+    window.revealBinaryCard = revealBinaryCard;
 
     window.toggleAnswer = toggleAnswer;
     prevBtn.addEventListener('click', () => goToSlide(current - 1));
