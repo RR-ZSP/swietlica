@@ -402,6 +402,42 @@
     }
 
 
+
+    /* Photo-like computer parts cards */
+    .parts-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .part-photo-card {
+      background: linear-gradient(135deg,#ffffff,#f4f9ff);
+      border: 3px solid #dbeafe;
+      border-radius: 28px;
+      padding: 14px;
+      box-shadow: 0 16px 36px rgba(20,70,140,.13);
+      text-align: center;
+      min-height: 245px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .part-photo-card h3 { margin: 4px 0 6px; font-size: clamp(1.15rem, 1.8vw, 1.55rem); }
+    .part-photo-card p { font-size: clamp(.92rem, 1.25vw, 1.08rem); line-height: 1.2; margin: 0; }
+    .part-picture {
+      height: 128px;
+      border-radius: 22px;
+      background: radial-gradient(circle at 45% 20%, #fff, #e0f2fe 75%);
+      border: 2px solid #e0ecff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      margin-bottom: 8px;
+    }
+    .part-picture svg { width: 92%; height: 92%; filter: drop-shadow(0 10px 12px rgba(15,45,96,.18)); }
+    @media (max-width: 900px) { .parts-photo-grid { grid-template-columns: 1fr; } .part-photo-card { min-height: 220px; } }
+
     /* Robot algorithm game */
     .robot-game {
       display: grid;
@@ -667,15 +703,93 @@
     <section class="slide">
       <div class="content">
         <h2>Z czego składa się komputer?</h2>
-        <table>
-          <tr><th>Część</th><th>Co robi?</th><th>Analogia</th></tr>
-          <tr><td>Procesor</td><td>Liczy i steruje</td><td>Mózg 🧠</td></tr>
-          <tr><td>Pamięć RAM</td><td>Pamięta na chwilę</td><td>Biurko ✏️</td></tr>
-          <tr><td>Dysk</td><td>Przechowuje dane</td><td>Biblioteka 📚</td></tr>
-          <tr><td>Monitor</td><td>Pokazuje obraz</td><td>Oczy 👀</td></tr>
-          <tr><td>Klawiatura i mysz</td><td>Wprowadzają polecenia</td><td>Ręce ✋</td></tr>
-          <tr><td>Głośniki</td><td>Odtwarzają dźwięk</td><td>Usta 🔊</td></tr>
-        </table>
+        <p class="lead center">Zobaczmy, jak wyglądają najważniejsze części komputera.</p>
+        <div class="parts-photo-grid">
+          <div class="part-photo-card">
+            <div class="part-picture" aria-label="Procesor CPU">
+              <svg viewBox="0 0 220 140" role="img">
+                <rect x="62" y="22" width="96" height="96" rx="12" fill="#26364f"/>
+                <rect x="78" y="38" width="64" height="64" rx="8" fill="#9ca3af"/>
+                <rect x="88" y="48" width="44" height="44" rx="5" fill="#d1d5db"/>
+                <g stroke="#fbbf24" stroke-width="4">
+                  <path d="M42 34h20M42 52h20M42 70h20M42 88h20M42 106h20"/>
+                  <path d="M158 34h20M158 52h20M158 70h20M158 88h20M158 106h20"/>
+                  <path d="M74 2v20M92 2v20M110 2v20M128 2v20M146 2v20"/>
+                  <path d="M74 118v20M92 118v20M110 118v20M128 118v20M146 118v20"/>
+                </g>
+              </svg>
+            </div>
+            <h3>Procesor CPU 🧠</h3>
+            <p>Mały kwadrat z wieloma stykami. Wykonuje obliczenia i polecenia.</p>
+          </div>
+          <div class="part-photo-card">
+            <div class="part-picture" aria-label="Pamięć RAM">
+              <svg viewBox="0 0 240 140" role="img">
+                <rect x="22" y="42" width="196" height="58" rx="10" fill="#16a34a"/>
+                <rect x="38" y="54" width="22" height="30" rx="3" fill="#111827"/>
+                <rect x="68" y="54" width="22" height="30" rx="3" fill="#111827"/>
+                <rect x="98" y="54" width="22" height="30" rx="3" fill="#111827"/>
+                <rect x="128" y="54" width="22" height="30" rx="3" fill="#111827"/>
+                <rect x="158" y="54" width="22" height="30" rx="3" fill="#111827"/>
+                <rect x="188" y="54" width="18" height="30" rx="3" fill="#111827"/>
+                <g fill="#fbbf24"><rect x="38" y="100" width="8" height="18"/><rect x="52" y="100" width="8" height="18"/><rect x="66" y="100" width="8" height="18"/><rect x="80" y="100" width="8" height="18"/><rect x="94" y="100" width="8" height="18"/><rect x="108" y="100" width="8" height="18"/><rect x="122" y="100" width="8" height="18"/><rect x="136" y="100" width="8" height="18"/><rect x="150" y="100" width="8" height="18"/><rect x="164" y="100" width="8" height="18"/><rect x="178" y="100" width="8" height="18"/></g>
+              </svg>
+            </div>
+            <h3>Pamięć RAM 📝</h3>
+            <p>Długa zielona płytka. Trzyma rzeczy, których komputer używa teraz.</p>
+          </div>
+          <div class="part-photo-card">
+            <div class="part-picture" aria-label="Dysk SSD">
+              <svg viewBox="0 0 220 140" role="img">
+                <rect x="42" y="22" width="136" height="96" rx="14" fill="#111827"/>
+                <rect x="58" y="38" width="104" height="60" rx="9" fill="#374151"/>
+                <text x="110" y="73" text-anchor="middle" font-size="26" font-weight="900" fill="#e5e7eb">SSD</text>
+                <circle cx="62" cy="106" r="5" fill="#94a3b8"/><circle cx="158" cy="106" r="5" fill="#94a3b8"/>
+              </svg>
+            </div>
+            <h3>Dysk SSD / HDD 💾</h3>
+            <p>Magazyn na pliki, zdjęcia, gry i system. Pamięta po wyłączeniu.</p>
+          </div>
+          <div class="part-photo-card">
+            <div class="part-picture" aria-label="Monitor">
+              <svg viewBox="0 0 220 140" role="img">
+                <rect x="32" y="18" width="156" height="88" rx="10" fill="#1f2937"/>
+                <rect x="44" y="30" width="132" height="64" rx="6" fill="#7dd3fc"/>
+                <rect x="100" y="106" width="20" height="18" fill="#374151"/>
+                <rect x="74" y="122" width="72" height="8" rx="4" fill="#374151"/>
+              </svg>
+            </div>
+            <h3>Monitor 👀</h3>
+            <p>Ekran, na którym widzimy obraz, tekst, film albo grę.</p>
+          </div>
+          <div class="part-photo-card">
+            <div class="part-picture" aria-label="Klawiatura i mysz">
+              <svg viewBox="0 0 240 140" role="img">
+                <rect x="22" y="64" width="150" height="48" rx="10" fill="#e5e7eb" stroke="#64748b" stroke-width="3"/>
+                <g fill="#94a3b8"><rect x="36" y="76" width="13" height="8" rx="2"/><rect x="55" y="76" width="13" height="8" rx="2"/><rect x="74" y="76" width="13" height="8" rx="2"/><rect x="93" y="76" width="13" height="8" rx="2"/><rect x="112" y="76" width="13" height="8" rx="2"/><rect x="131" y="76" width="13" height="8" rx="2"/><rect x="43" y="92" width="13" height="8" rx="2"/><rect x="62" y="92" width="50" height="8" rx="2"/><rect x="118" y="92" width="13" height="8" rx="2"/><rect x="137" y="92" width="13" height="8" rx="2"/></g>
+                <rect x="186" y="50" width="34" height="62" rx="17" fill="#dbeafe" stroke="#2563eb" stroke-width="4"/>
+                <line x1="203" y1="50" x2="203" y2="72" stroke="#2563eb" stroke-width="3"/>
+              </svg>
+            </div>
+            <h3>Klawiatura i mysz ✋</h3>
+            <p>Służą do wpisywania i wybierania poleceń dla komputera.</p>
+          </div>
+          <div class="part-photo-card">
+            <div class="part-picture" aria-label="Płyta główna i zasilacz">
+              <svg viewBox="0 0 240 140" role="img">
+                <rect x="38" y="18" width="118" height="104" rx="12" fill="#0f766e"/>
+                <rect x="56" y="34" width="42" height="42" rx="5" fill="#334155"/>
+                <rect x="106" y="36" width="28" height="68" rx="4" fill="#111827"/>
+                <circle cx="70" cy="94" r="10" fill="#fde68a"/><circle cx="126" cy="112" r="6" fill="#fde68a"/>
+                <rect x="168" y="42" width="44" height="58" rx="8" fill="#64748b"/>
+                <circle cx="190" cy="71" r="17" fill="#1e293b"/><circle cx="190" cy="71" r="7" fill="#94a3b8"/>
+              </svg>
+            </div>
+            <h3>Płyta główna i zasilacz 🔌</h3>
+            <p>Płyta łączy części, a zasilacz dostarcza energię.</p>
+          </div>
+        </div>
+        <div class="footer-tip center">Warto pokazać dzieciom prawdziwe części obok komputera — wtedy łatwiej zapamiętać ich wygląd.</div>
       </div><div class="slide-no">6</div>
     </section>
 
